@@ -80,8 +80,18 @@ export async function openFilm(htmlPath, { port = 9400 + Math.floor(Math.random(
   return { ev, logs, info, close: () => { try { ws.close(); } catch {} chrome.kill(); } };
 }
 
+// Evaluate an expression that yields a long string and read it back in 1 MB slices: a DevTools reply of a
+// few MB (a detailed 4K PNG at --ss 2) can stall the socket forever, with no error on either side.
+export async function bigString(ev, expr) {
+  const n = await ev(`(window.__big = String(${expr})).length`);
+  let s = '';
+  for (let i = 0; i < n; i += 1 << 20) s += await ev(`window.__big.slice(${i}, ${i + (1 << 20)})`);
+  await ev('(window.__big = null, 0)');
+  return s;
+}
+
 // Seek and grab the canvas as JPEG (or PNG) bytes.
 export async function grab(ev, t, type = 'image/jpeg', q = .95) {
-  const url = await ev(`(__film.seek(${t}), (document.getElementById('c') || document.querySelector('canvas')).toDataURL('${type}', ${q}))`);
+  const url = await bigString(ev, `(__film.seek(${t}), (document.getElementById('c') || document.querySelector('canvas')).toDataURL('${type}', ${q}))`);
   return Buffer.from(url.slice(url.indexOf(',') + 1), 'base64');
 }
