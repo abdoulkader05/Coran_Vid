@@ -1,0 +1,24 @@
+<!doctype html>
+<!-- Histoire tirée d'un hadith (le-puits-et-le-chien), 9:16. Données : data.js (généré), décor : ../../moteur/scenes.js, moteur : ../../moteur/moteur.js -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hadith – le-puits-et-le-chien</title>
+<style>
+  @font-face { font-family: 'EB Garamond'; src: url('../../moteur/fonts/EBGaramond.ttf') format('truetype'); font-weight: 400 800; font-display: block; }
+  @font-face { font-family: 'EB Garamond'; src: url('../../moteur/fonts/EBGaramond-Italic.ttf') format('truetype'); font-weight: 400 800; font-style: italic; font-display: block; }
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  body { display: grid; place-items: center; }
+  canvas { max-width: 100vw; max-height: 100vh; width: auto; height: auto; display: block; }
+  #start { position: fixed; inset: 0; display: grid; place-items: center; color: #eee; font: 18px Georgia, serif; background: rgba(0,0,0,.55); cursor: pointer; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="start">cliquer pour lire · avec le son</div>
+<script src="data.js" charset="utf-8"></script>
+<script src="../../moteur/scenes.js" charset="utf-8"></script>
+<script src="../../moteur/moteur.js" charset="utf-8"></script>
+</body>
+</html>
