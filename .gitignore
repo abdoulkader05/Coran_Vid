@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Vidéos Coran : rendus, images de contrôle et audio dérivé (reproductibles)
+export/
+stills/
+versets/*/source/*.wav
