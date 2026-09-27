@@ -1,25 +1,16 @@
-import { CalculateMetadataFunction, Composition } from "remotion";
+import { Composition } from "remotion";
+import { DUREE_V17, Verset17 } from "./scenes/Verset17";
 
-type Props = {};
-
-const calculateMetadata: CalculateMetadataFunction<Props> = () => {
-  return {};
-};
-
+// Une composition par scène pendant la fabrication ; le film entier les enchaînera, calé sur la récitation.
 export const MyComposition = () => {
   return (
     <Composition
-      id="MyComp"
-      component={MyComponent}
-      durationInFrames={60}
+      id="Verset17"
+      component={Verset17}
+      durationInFrames={DUREE_V17}
       fps={30}
-      width={1280}
-      height={720}
-      calculateMetadata={calculateMetadata}
+      width={1920}
+      height={1080}
     />
   );
-};
-
-export const MyComponent: React.FC<Props> = () => {
-  return null;
 };
